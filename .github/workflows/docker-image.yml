@@ -5,7 +5,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+env:
+  tag: $(date +%s)
 jobs:
 
   build:
@@ -20,6 +21,6 @@ jobs:
         # 登录阿里云镜像仓库
         docker login --username=${{secrets.DOCKER_USERNAME}} --password=${{secrets.DOCKER_PASSWORD}} registry.cn-shenzhen.aliyuncs.com
         # 使用Dockerfile构建镜像
-        docker build . --file Dockerfile --tag registry.cn-shenzhen.aliyuncs.com/devan/hanlp-jupyterlab:$(date +%s)
+        docker build . --file Dockerfile --tag registry.cn-shenzhen.aliyuncs.com/devan/hanlp-jupyterlab:${tag}
         # 推送镜像到镜像仓库
-        docker push registry.cn-shenzhen.aliyuncs.com/devan/hanlp-jupyterlab:$(date +%s)
+        docker push registry.cn-shenzhen.aliyuncs.com/devan/hanlp-jupyterlab:${tag}
