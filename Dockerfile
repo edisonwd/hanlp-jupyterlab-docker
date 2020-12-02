@@ -1,8 +1,8 @@
 FROM python:3.8.5
 
-RUN pip --no-cache-dir install -i https://mirrors.aliyun.com/pypi/simple hanlp
+RUN pip --no-cache-dir install hanlp
 
-RUN pip install -i https://mirrors.aliyun.com/pypi/simple jupyterlab
+RUN pip install jupyterlab
 
 WORKDIR /jupyter
 
